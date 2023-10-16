@@ -1,0 +1,9 @@
+flutter_native_splash:
+  color: "#114EDE"
+  image: "assets/logo_elisa_white_rounded.png"
+
+  android_12:
+    color: "#114EDE"
+    image: "assets/logo_elisa_white_rounded.png"
+
+  web: false
