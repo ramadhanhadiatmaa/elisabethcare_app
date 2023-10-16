@@ -7,7 +7,8 @@ import 'app/routes/app_pages.dart';
 void main() {
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Elisabeth Care",
+      debugShowCheckedModeBanner: false,
       initialRoute: Routes.home,
       getPages: AppPages.routes,
     ),
