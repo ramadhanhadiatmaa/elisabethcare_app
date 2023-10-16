@@ -3,14 +3,14 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOME;
-  static const LOGIN = _Paths.LOGIN;
-  static const SIGNUP = _Paths.SIGNUP;
+  static const home = _Paths.home;
+  static const login = _Paths.login;
+  static const signUp = _Paths.signUp;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const HOME = '/home';
-  static const LOGIN = '/login';
-  static const SIGNUP = '/signup';
+  static const home = '/home';
+  static const login = '/login';
+  static const signUp = '/signup';
 }
