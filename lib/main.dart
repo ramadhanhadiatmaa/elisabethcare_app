@@ -9,7 +9,7 @@ void main() {
     GetMaterialApp(
       title: "Elisabeth Care",
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      initialRoute: Routes.onboard,
       getPages: AppPages.routes,
     ),
   );
