@@ -1,23 +1,22 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  TextEditingController rmC = TextEditingController();
+  TextEditingController passC = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  RxBool isHidden = true.obs;
+  RxBool isRemember = false.obs;
+
+  final box = GetStorage();
+
+  void save() {
+    if (isRemember.isTrue) {
+      box.write("data", {
+        "rm": rmC.text,
+        "password": passC.text,
+      });
+    }
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

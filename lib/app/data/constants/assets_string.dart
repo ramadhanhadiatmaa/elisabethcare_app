@@ -2,6 +2,8 @@ const String iBoard1 = "assets/onboarding_1.png";
 const String iBoard2 = "assets/onboarding_2.png";
 const String iBoard3 = "assets/onboarding_3.png";
 
+const String iLogo = "assets/logo_elisa_blue.png";
+
 const String iTitle1 = "Pelayanan Prima";
 const String iTitle2 = "Portal Informasi";
 const String iTitle3 = "Akses Lebih Mudah";
