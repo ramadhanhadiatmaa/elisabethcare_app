@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../constants/color.dart';
-
 class ButtonWid extends StatelessWidget {
   const ButtonWid({
     super.key,

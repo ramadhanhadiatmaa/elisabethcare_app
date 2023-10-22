@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../data/constants/color.dart';
-import '../../../data/widgets/widget_button.dart';
-import '../../../data/widgets/widget_logo.dart';
-import '../../../data/widgets/widget_text.dart';
+import '../../../data/widgets/tools/widget_button.dart';
+import '../../../data/widgets/tools/widget_logo.dart';
+import '../../../data/widgets/tools/widget_text.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 

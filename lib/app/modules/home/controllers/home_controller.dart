@@ -1,23 +1,28 @@
+import 'package:elisabeth_care/app/data/models/dokter_model.dart';
+import 'package:elisabeth_care/app/data/services/api_services.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  RxBool isLoading = true.obs;
 
-  final count = 0.obs;
+  var dokterList = <DokterModel>[].obs;
+
   @override
   void onInit() {
+    fetchData();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  Future<void> fetchData() async {
+    try {
+      isLoading(true);
 
-  @override
-  void onClose() {
-    super.onClose();
+      var dokterData = await ApiService().fetchDokterData();
+      dokterList.addAll(dokterData);
+    } catch (e) {
+      print("error fetching dokter data $e");
+    } finally {
+      isLoading(false);
+    }
   }
-
-  void increment() => count.value++;
 }

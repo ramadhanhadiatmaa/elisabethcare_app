@@ -9,11 +9,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.1.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.3
   get: 4.6.6
   get_storage: ^2.1.1
   google_fonts: ^6.1.0
+  http: ^1.1.0
   rename: ^3.0.0
   smooth_page_indicator: ^1.1.0
 
@@ -31,4 +33,5 @@ flutter_launcher_icons:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/images/
+    - .env

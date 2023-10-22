@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants/assets_string.dart';
-import '../constants/color.dart';
+import '../../constants/assets_string.dart';
+import '../../constants/color.dart';
 import 'widget_text.dart';
 
 class LogoWid extends StatelessWidget {
