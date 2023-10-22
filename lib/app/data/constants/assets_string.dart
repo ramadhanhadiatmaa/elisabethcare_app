@@ -1,8 +1,11 @@
-const String iBoard1 = "assets/onboarding_1.png";
-const String iBoard2 = "assets/onboarding_2.png";
-const String iBoard3 = "assets/onboarding_3.png";
+const String iBoard1 = "assets/images/onboarding_1.png";
+const String iBoard2 = "assets/images/onboarding_2.png";
+const String iBoard3 = "assets/images/onboarding_3.png";
 
-const String iLogo = "assets/logo_elisa_blue.png";
+const String iLogo = "assets/images/logo_elisa_blue.png";
+const String iLogoRs = "assets/images/logo_rs.png";
+
+const String iDokter = "assets/images/image_docter.png";
 
 const String iTitle1 = "Pelayanan Prima";
 const String iTitle2 = "Portal Informasi";
