@@ -1,9 +1,10 @@
-import 'package:elisabeth_care/app/data/constants/assets_string.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/constants/assets_string.dart';
 import '../../../data/constants/color.dart';
 import '../../../data/widgets/tools/widget_text.dart';
+import '../../../data/widgets/views/widget_card_dokter.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -45,123 +46,143 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 240,
-                  child: Obx(() {
-                    if (homeC.isLoading.value) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: homeC.dokterList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            right: 10,
-                          ),
-                          child: SizedBox(
-                            width: 220,
-                            height: 240,
-                            child: Card(
-                              elevation: 2,
-                              color: Colors.white70.withOpacity(0.9),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  30,
-                                ),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Center(
-                                    child: Column(
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        ClipOval(
-                                          child: Image(
-                                            width: 100,
-                                            height: 100,
-                                            image: NetworkImage(
-                                              homeC.dokterList[index].foto,
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 16,
-                                        ),
-                                        TextWid(
-                                          text: homeC.dokterList[index].nama,
-                                          size: 16,
-                                          color: cBlue,
-                                          weight: FontWeight.w800,
-                                          align: TextAlign.center,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        TextWid(
-                                          text:
-                                              homeC.dokterList[index].spesialis,
-                                          size: 14,
-                                          color: cBlack.withOpacity(0.8),
-                                          weight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    child: InkWell(
-                                      onTap: () =>
-                                          Get.toNamed(Routes.detailDokter),
-                                      child: Container(
-                                        width: 120,
-                                        height: 30,
-                                        decoration: const BoxDecoration(
-                                          color: cBlue,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            bottomRight: Radius.circular(30),
-                                          ),
-                                        ),
-                                        child: const Center(
-                                          child: TextWid(
-                                            text: "Detail",
-                                            size: 14,
-                                            color: cWhite,
-                                            weight: FontWeight.w800,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }),
-                ),
+                CardWidDokter(homeC: homeC),
                 const SizedBox(
                   height: 20,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextWid(
-                      text: "Jadwal Poliklinik",
-                      size: 16,
-                      color: cBlue,
-                      weight: FontWeight.w600,
-                    ),
+                    Obx(() {
+                      if (homeC.isTextLoading.value) {
+                        return const TextWid(
+                          text: "Jadwal Poli Hari Ini",
+                          size: 16,
+                          color: cBlue,
+                          weight: FontWeight.w600,
+                        );
+                      }
+                      return TextWid(
+                        text:
+                            "Jadwal Poli ${translateDay(homeC.dayOfWeek.value)}, ${homeC.time.value}",
+                        size: 16,
+                        color: cBlue,
+                        weight: FontWeight.w600,
+                      );
+                    }),
                   ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Obx(
+                  () => SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: homeC.poliList.length * 138.0,
+                    child: Obx(() {
+                      if (homeC.isPoliLoading.value) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView.builder(
+                          itemCount: homeC.poliList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 10,
+                              ),
+                              child: Card(
+                                elevation: 5,
+                                color: (homeC.poliList[index].status == "Buka")
+                                    ? cBlue
+                                    : cRed,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    30,
+                                  ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 120,
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.75,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(
+                                          30,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 120,
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          ClipOval(
+                                            child: Image(
+                                              height: 66,
+                                              width: 66,
+                                              image: NetworkImage(
+                                                  homeC.poliList[index].foto),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              TextWid(
+                                                text:
+                                                    homeC.poliList[index].nama,
+                                                size: 20,
+                                                color: cBlack,
+                                                weight: FontWeight.w800,
+                                              ),
+                                              TextWid(
+                                                text: homeC
+                                                    .poliList[index].dokter,
+                                                size: 12,
+                                                color: cBlack,
+                                                weight: FontWeight.w300,
+                                              ),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          RotatedBox(
+                                            quarterTurns: 5,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 12.0,
+                                              ),
+                                              child: TextWid(
+                                                text: homeC
+                                                    .poliList[index].status
+                                                    .toUpperCase(),
+                                                size: 22,
+                                                color: cWhite,
+                                                weight: FontWeight.w900,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    }),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -184,6 +205,19 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
+}
+
+String translateDay(String englishDay) {
+  Map<String, String> dayTranslations = {
+    'Monday': 'Senin',
+    'Tuesday': 'Selasa',
+    'Wednesday': 'Rabu',
+    'Thursday': 'Kamis',
+    'Friday': 'Jumat',
+    'Saturday': 'Sabtu',
+    'Sunday': 'Minggu',
+  };
+  return dayTranslations[englishDay] ?? englishDay;
 }
 
 class CardWid extends StatelessWidget {
